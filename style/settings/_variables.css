@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jersey+25&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-color: #969696;
+    --secundary-color: #5173EE;
+    --terciary-color: #D9D9D9;
+
+    /* Textos, colores, etc */
+    --text-color_primary: #1F1E1E;
+    --text-color_primary-50: #1f1e1e92;
+    --text-color_primary-25: #1f1e1e44;
+
+    --font-title:"Pacifico", cursive;
+}

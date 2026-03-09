@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Agregar Datos</title>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <h1>Gestor App</h1>
+        </nav>
+        
+        <main>
+                <h2>Ingresa los datos</h2>
+                <form id="enviarDatos" method="POST">
+                    <h3>Agregue sus gastos</h3>
+                    <hr>
+                    <div id="div">
+                        <i class="fa-solid fa-plus" id="agregarGastos"></i>
+                        <input type="text" name="empresa[]" placeholder="Nombre empresa">
+                        <input type="number" name="monto[]" placeholder="Monto deuda">
+                        <span id="formInput"></span>
+                    </div>
+                    <br>
+                    <button id="botonEnviar" type="submit">Enviar datos</button>
+                </form>
+                <p>Los datos ingresados seran guardados en una BD para su uso desde la APP</p>
+
+        </main>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.getElementById('enviarDatos').addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            let datosFormulario = new FormData(this);
+            fetch('../controller/guardar_datos.php', {
+                method: 'POST',
+                body: datosFormulario
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                document.getElementById("enviarDatos").reset();
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
