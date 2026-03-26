@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $montos = $_POST['monto'] ?? [];
 
     try{ 
-        $sql = "INSERT INTO deudas (empresa, monto, fecha_deuda) VALUES (:empresa, :monto, :fecha_actual)";
+        $sql = "INSERT INTO deudas (empresa, monto, fecha_deuda, ) VALUES (:empresa, :monto, :fecha_actual)";
         $stmt = $pdo->prepare($sql);
 
         var_dump($_POST['empresa']);

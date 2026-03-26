@@ -2,21 +2,25 @@
 
 require_once '../model/Connection.php';
 
+session_start();
+
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $usuario = $_POST['usuario'];
-    $contraseña = $_POST['contraseña'];
+    $nombre = $_POST['usuario'];
+    $contrasena = $_POST['contrasena'];
+
+    $sql = "SELECT * FROM usuarios WHERE nombre = :nombre AND contrasena = :contrasena";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':nombre' => $nombre, ':contrasena' => $contrasena]);
+     
+    $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+    $_SESSION['identificador'] = $resultado['id'];
 }
-
-     $sql = "SELECT * FROM usuarios WHERE nombre = :usuario";
-     $stmt = $pdo->prepare($sql);
-     $stmt->execute([':usuario' => $usuario]);
-
-     $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
      if($resultado){
       echo json_encode([
         "exito" => true, 
-        "mensaje" => "¡Login correcto!"
+        "mensaje" => "¡Login correcto!, ID usuario:",
+        $_SESSION['identificador']
       ]);
         exit();
      } else {
